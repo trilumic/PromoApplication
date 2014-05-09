@@ -64,6 +64,11 @@ public class TourDatesEventHandler extends DefaultHandler {
             chars = chars.trim();
 
             objectInCreation.name = chars;
+        } else if(startedElement.equals((TourDatesEvent.DESCRIPTION))) {
+            String chars = new String(ch, start, length);
+            chars = chars.trim();
+
+            objectInCreation.description = chars;
         }
     }
 }
