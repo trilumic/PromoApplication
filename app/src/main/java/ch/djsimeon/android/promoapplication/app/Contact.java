@@ -34,9 +34,9 @@ public class Contact extends Activity {
 //            case R.id.action_contact:
 //                Intent contact = new Intent(this,Contact.class);
 //                startActivity(contact);
-//            case  R.id.action_tourdates:
-//                Intent tour = new Intent(this,Tourdates.class);
-//                startActivity(tour);
+            case  R.id.action_tourdates:
+                Intent tour = new Intent(this,Tourdates.class);
+                startActivity(tour);
 //            case R.id.action_music:
 //                Intent music = new Intent(this, Music.class);
 //                startActivity(music);
