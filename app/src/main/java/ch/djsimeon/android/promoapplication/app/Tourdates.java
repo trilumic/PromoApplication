@@ -5,6 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.io.IOException;
+
+import ch.djsimeon.android.promoapplication.app.xmlStuff.TourDatesEvent;
+import ch.djsimeon.android.promoapplication.app.xmlStuff.TourDatesParser;
 
 public class Tourdates extends Activity {
 
@@ -12,6 +19,19 @@ public class Tourdates extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tourdates);
+
+
+        ListView listView = (ListView) findViewById(R.id.tourdates);
+
+        try {
+            ArrayAdapter adapter = new ArrayAdapter<TourDatesEvent>(this,
+                    R.layout.list_item_event, TourDatesParser.parse(getAssets().open("tourdates.xml")));
+            listView.setAdapter(adapter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         //asdf
     }
 
@@ -21,6 +41,8 @@ public class Tourdates extends Activity {
         
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+
         return true;
     }
 
