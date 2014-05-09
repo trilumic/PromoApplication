@@ -15,6 +15,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
+    //marc macht nüt
+
 
     //Dies ist ein Testkommentar
     //Noch ein Kommentar!!!!!!!!
