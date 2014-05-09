@@ -7,7 +7,6 @@ import android.view.MenuItem;
 
 public class MainActivity extends Activity {
 
-    //Hallo teammember
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,10 +14,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
-    //marc macht nüt
-
-
-    //Dies ist ein Testkommentar
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
