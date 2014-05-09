@@ -35,15 +35,19 @@ public class Tourdates extends Activity {
             case R.id.action_contact:
                 Intent contact = new Intent(this,Contact.class);
                 startActivity(contact);
+                break;
 //            case  R.id.action_tourdates:
 //                Intent tour = new Intent(this,Tourdates.class);
 //                startActivity(tour);
+//                break;
 //            case R.id.action_music:
 //                Intent music = new Intent(this, Music.class);
 //                startActivity(music);
+//                break;
 //            case R.id.action_gallery:
 //                Intent gallery = new Intent(this, Gallery.class);
 //                startActivity(gallery);
+//                break;
         }
         return super.onOptionsItemSelected(item);
     }
