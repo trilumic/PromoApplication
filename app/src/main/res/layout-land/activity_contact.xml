@@ -3,21 +3,14 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="140dp"
     tools:context="ch.djsimeon.android.promoapplication.app.Contact"
     android:background="#FFFFFF">
 
-    <!--<TextView-->
-        <!--android:text="@string/hello_world"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
 
-    <RelativeLayout
+    <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:background="@drawable/background_land">
-
-        </RelativeLayout>
+        android:src="@drawable/background_land"
+        android:scaleType="fitStart"/>
 
 </RelativeLayout>
