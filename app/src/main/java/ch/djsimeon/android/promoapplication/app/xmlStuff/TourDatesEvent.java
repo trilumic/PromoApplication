@@ -21,10 +21,10 @@ public class TourDatesEvent {
 
     @Override
     public String toString() {
-        return time + ", " + location + ", " + name;
+        return time + " " + location + ", " + name;
     }
 
     public Spanned toHtmlString() {
-        return Html.fromHtml("<strong>"+time+"</strong>, <i>"+location+"</i> "+ name);
+        return Html.fromHtml("<div style='height:10dp'><strong>"+time+"</strong> <i>"+location+"</i> "+ name + "</div>");
     }
 }

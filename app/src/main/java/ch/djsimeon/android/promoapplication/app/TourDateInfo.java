@@ -1,6 +1,7 @@
 package ch.djsimeon.android.promoapplication.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +16,8 @@ public class TourDateInfo extends Activity {
         TextView textView = (TextView) findViewById(R.id.tourdate_info);
 
         setTitle("Details");
-        textView.setText(getIntent().getStringExtra("text"));
+        Intent intent = getIntent();
+        textView.setText(intent.getCharSequenceExtra("itemText") + intent.getStringExtra("description"));
     }
 
 

@@ -16,7 +16,6 @@
             android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,6 +28,7 @@
             android:name="ch.djsimeon.android.promoapplication.app.Tourdates"
             android:label="@string/title_activity_tourdates"
             android:launchMode="singleTop"
+            android:parentActivityName="ch.djsimeon.android.promoapplication.app.MainActivity"
             android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity

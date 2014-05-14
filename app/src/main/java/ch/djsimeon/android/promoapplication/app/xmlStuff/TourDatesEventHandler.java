@@ -48,7 +48,7 @@ public class TourDatesEventHandler extends DefaultHandler {
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
-        Log.d("debug", new String(ch, start, length));
+       // Log.d("debug", new String(ch, start, length));
         if(startedElement.equals(TourDatesEvent.TIME)) {
             String chars = new String(ch, start, length);
             chars = chars.trim();

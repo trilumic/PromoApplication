@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -26,6 +28,9 @@ import ch.djsimeon.android.promoapplication.app.xmlStuff.TourDatesEvent;
 import ch.djsimeon.android.promoapplication.app.xmlStuff.TourDatesParser;
 
 public class Tourdates extends Activity {
+
+    static boolean firstStart = false;
+
     class MyArrayAdapter extends ArrayAdapter<TourDatesEvent>{
 
 
@@ -48,10 +53,23 @@ public class Tourdates extends Activity {
         }
     }
 
+    private void firstStart(){
+        new DownloadXMLTask().execute();
+    }
+
     private class DownloadXMLTask extends AsyncTask<String, Void, ArrayList<TourDatesEvent>> {
         ArrayList<TourDatesEvent> tourDatesEvents;
         @Override
         protected ArrayList<TourDatesEvent> doInBackground(String... params) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    TextView textView = (TextView) findViewById(R.id.tourdates_text_info);
+                    textView.setVisibility(View.VISIBLE);
+                    textView.setText(getResources().getString(R.string.loading));
+                }
+            });
+
             try {
                 tourDatesEvents = TourDatesParser.parse(new URL("http://10.0.2.2/tourdates.xml").openStream());
             } catch (MalformedURLException e) {
@@ -65,28 +83,56 @@ public class Tourdates extends Activity {
 
         @Override
         protected void onPostExecute(final ArrayList<TourDatesEvent> tourdates) {
-            MyArrayAdapter myArrayAdapter = new MyArrayAdapter(Tourdates.this, R.layout.list_item_event, tourdates);
 
-            ListView listView = (ListView) findViewById(R.id.tourdates);
-            listView.setAdapter(myArrayAdapter);
+            if (tourdates != null) {
+                MyArrayAdapter myArrayAdapter = new MyArrayAdapter(Tourdates.this, R.layout.list_item_event, tourdates);
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent intent = new Intent(Tourdates.this, TourDateInfo.class);
-                    intent.putExtra("text", tourdates.get(i).description );
-                    startActivity(intent);
-                }
-            });
+                ListView listView = (ListView) findViewById(R.id.tourdates);
+                listView.setAdapter(myArrayAdapter);
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(Tourdates.this, TourDateInfo.class);
+                        intent.putExtra("itemText", tourdates.get(i).toHtmlString());
+                        intent.putExtra("description", tourdates.get(i).description);
+                        startActivity(intent);
+                    }
+                });
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        TextView textView = (TextView) findViewById(R.id.tourdates_text_info);
+//                        textView.setText("");
+                        textView.setVisibility(View.GONE);
+                    }
+                });
+
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        TextView textView = (TextView) findViewById(R.id.tourdates_text_info);
+                        textView.setText(getResources().getString(R.string.no_tourdates_loaded));
+                    }
+                });
+                Toast.makeText(Tourdates.this, "Tourendaten konnten nicht geladen werden.",Toast.LENGTH_SHORT).show();
+            }
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("m","Tourdates created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tourdates);
 
+        if (!firstStart) {
+            firstStart = true;
+            firstStart();
+        }
 
-        new DownloadXMLTask().execute();
 //        ListView listView = (ListView) findViewById(R.id.tourdates);
 
 //        try {
@@ -118,12 +164,19 @@ public class Tourdates extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        Log.d("m","Tourdates started");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d("m","Tourdates resumed");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("m","Tourdates paused");
     }
 
     @Override
@@ -131,7 +184,7 @@ public class Tourdates extends Activity {
         
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-
+        getMenuInflater().inflate(R.menu.tour_date_menu,menu);
 
         return true;
     }
@@ -147,6 +200,9 @@ public class Tourdates extends Activity {
             case R.id.action_contact:
                 Intent contact = new Intent(this,Contact.class);
                 startActivity(contact);
+                break;
+            case R.id.refresh_tour_dates:
+                new DownloadXMLTask().execute();
                 break;
 //            case  R.id.action_tourdates:
 //                Intent tour = new Intent(this,Tourdates.class);
@@ -164,4 +220,18 @@ public class Tourdates extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Log.d("message", "Hey, onsaveinstancestate called");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        Log.d("message", "Hey, onRestoreInstanceState called");
+    }
 }
