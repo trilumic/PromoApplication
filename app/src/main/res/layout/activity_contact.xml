@@ -3,16 +3,18 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="ch.djsimeon.android.promoapplication.app.Contact">
+    tools:context="ch.djsimeon.android.promoapplication.app.Contact"
+    android:background="#FFFFFF">
 
-    <!--<TextView-->
-        <!--android:text=""-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/background"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+         />
+
+
 
 </RelativeLayout>

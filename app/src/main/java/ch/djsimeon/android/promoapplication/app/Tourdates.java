@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -71,7 +70,7 @@ public class Tourdates extends Activity {
             });
 
             try {
-                tourDatesEvents = TourDatesParser.parse(new URL("http://10.0.2.2/tourdates.xml").openStream());
+                tourDatesEvents = TourDatesParser.parse(new URL("http://nb-ebruma/tourdates.xml").openStream());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

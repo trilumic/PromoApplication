@@ -2,9 +2,12 @@ package ch.djsimeon.android.promoapplication.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
 
 public class Contact extends Activity {
 
@@ -22,6 +25,23 @@ public class Contact extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+    public void openBrowser(View view){
+
+        //Get url from tag
+        String url = (String)view.getTag();
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+
+        //pass the url to intent data
+        intent.setData(Uri.parse(url));
+
+        startActivity(intent);
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
