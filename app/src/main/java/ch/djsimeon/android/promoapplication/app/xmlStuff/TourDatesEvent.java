@@ -3,10 +3,12 @@ package ch.djsimeon.android.promoapplication.app.xmlStuff;
 import android.text.Html;
 import android.text.Spanned;
 
+import java.io.Serializable;
+
 /**
  * Created by ebruma on 09.05.14.
  */
-public class TourDatesEvent {
+public class TourDatesEvent implements Serializable {
     public String time = "";
     public String location = "";
     public String name = "";
