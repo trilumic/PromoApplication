@@ -15,6 +15,34 @@
         android:scaleType="centerCrop"
          />
 
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:onClick="openBrowser"
+        android:tag="http://www.facebook.com/djsimeon.official"
+        android:src="@drawable/fblogo" />
+
+    <ImageView
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="90dp"
+        android:onClick="openBrowser"
+        android:tag="http://www.youtube.com/channel/UCKqeRTPIpltiPGjP2s1aYDA"
+        android:src="@drawable/ytlogo" />
+
+    <ImageView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="22dp"
+        android:tag="marc.holinger@startist.ch"
+        android:src="@drawable/startist"
+        android:onClick="sendEmail" />
+
 
 
 </RelativeLayout>

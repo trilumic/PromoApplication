@@ -14,21 +14,34 @@
         android:scaleType="fitStart"/>
 
     <ImageView
-        android:layout_width="380dp"
-        android:layout_height="80dp"
-        android:layout_marginLeft="400dp"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="0dp"
         android:onClick="openBrowser"
         android:tag="http://www.facebook.com/djsimeon.official"
         android:src="@drawable/fb" />
 
     <ImageView
-        android:layout_width="380dp"
-        android:layout_height="90dp"
-        android:layout_marginLeft="400dp"
-        android:layout_marginTop="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="50dp"
         android:onClick="openBrowser"
         android:tag="http://www.youtube.com/channel/UCKqeRTPIpltiPGjP2s1aYDA"
         android:src="@drawable/yt" />
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="22dp"
+        android:tag="marc.holinger@startist.ch"
+        android:src="@drawable/booking"
+        android:onClick="sendEmail" />
 
 </RelativeLayout>
