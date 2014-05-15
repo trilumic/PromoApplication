@@ -59,6 +59,8 @@ public class Tourdates extends Activity {
     }
 
     private class LoadDataTask extends AsyncTask<Boolean, Void, ArrayList<TourDatesEvent>> {
+        boolean loadedFromCache = false;
+        boolean loadedFromURL = false;
 
         private void saveDataInCache(ArrayList<TourDatesEvent> tourDatesEvents) {
             //try to save data in cache
@@ -79,6 +81,7 @@ public class Tourdates extends Activity {
                 ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File(getCacheDir(),"cacheFileTourDates")));
                 tourDatesEvents = (ArrayList<TourDatesEvent>) in.readObject();
                 in.close();
+                loadedFromCache = true;
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -93,6 +96,7 @@ public class Tourdates extends Activity {
             try {
                 tourDatesEvents = TourDatesParser.parse(new URL(XMLURL).openStream());
                 saveDataInCache(tourDatesEvents);
+                loadedFromURL = true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -103,12 +107,16 @@ public class Tourdates extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            TextView textView = (TextView) findViewById(R.id.tourdates_text_info);
-            textView.setVisibility(View.VISIBLE);
-            textView.setText(getResources().getString(R.string.loading));
-
+            //display loading text only if list is empty
+            if (((ListView) findViewById(R.id.tourdates)).getCount() == 0) {
+                TextView textView = (TextView) findViewById(R.id.tourdates_text_info);
+                textView.setVisibility(View.VISIBLE);
+                textView.setText(getResources().getString(R.string.loading));
+            }
 
         }
+
+        boolean tryLoadingFromCache = true;
 
         @Override
         protected ArrayList<TourDatesEvent> doInBackground(Boolean... params) {
@@ -124,7 +132,6 @@ public class Tourdates extends Activity {
 //            });
 
             //One argument is expected. it sets, whether data should be loaded from cache. default is true
-            boolean tryLoadingFromCache = true;
             if (params.length == 1) {
                 tryLoadingFromCache = (boolean) params[0];
             }
@@ -183,12 +190,18 @@ public class Tourdates extends Activity {
 //                    @Override
 //                    public void run() {
 
-                        textView.setText(getResources().getString(R.string.no_tourdates_loaded));
+                //Nur zeigen, wenn keine List-Items da
+                if (((ListView) findViewById(R.id.tourdates)).getCount() == 0) {
+                    textView.setVisibility(View.VISIBLE);
+                    textView.setText(getResources().getString(R.string.no_tourdates_loaded));
+                }
 //                    }
 //                });
 
-                //make clear it failed with a toast message
-                Toast.makeText(Tourdates.this, getResources().getString(R.string.no_tourdates_loaded),Toast.LENGTH_SHORT).show();
+                //display only when refreshing
+                if(!tryLoadingFromCache && ((ListView) findViewById(R.id.tourdates)).getCount() != 0) {
+                     Toast.makeText(Tourdates.this, getResources().getString(R.string.refresh_failed),Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
@@ -232,7 +245,7 @@ public class Tourdates extends Activity {
     protected void onStart() {
         super.onStart();
 
-
+//        new File(getCacheDir(),"cacheFileTourDates").delete();
 
          //try to load data
          new LoadDataTask().execute();
@@ -290,6 +303,7 @@ public class Tourdates extends Activity {
                 startActivity(contact);
                 break;
             case R.id.refresh_tour_dates:
+                //false means: don't try to load from cache
                 new LoadDataTask().execute(false);
                 break;
 //            case  R.id.action_tourdates:
