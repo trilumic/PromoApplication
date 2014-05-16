@@ -11,6 +11,8 @@
     <TextView
         android:id="@+id/tourdate_info"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:maxLines = "9999"
+        android:scrollbars = "vertical"/>
 
 </RelativeLayout>
