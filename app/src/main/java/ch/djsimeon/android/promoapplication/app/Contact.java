@@ -43,6 +43,8 @@ public class Contact extends Activity {
         startActivity(intent);
     }
 
+
+
     public void sendEmail(View view) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         String mailto = (String)view.getTag();
