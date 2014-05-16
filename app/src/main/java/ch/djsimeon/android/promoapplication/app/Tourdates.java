@@ -31,7 +31,7 @@ import ch.djsimeon.android.promoapplication.app.xmlStuff.TourDatesEvent;
 import ch.djsimeon.android.promoapplication.app.xmlStuff.TourDatesParser;
 
 public class Tourdates extends Activity {
-    public static String XMLURL = "http://10.0.2.2/tourdates.xml";
+    public static String XMLURL = "https://raw.githubusercontent.com/trilumic/PromoApplication/master/app/src/main/res/other/tourdates.xml";
 
 //    ArrayList<TourDatesEvent> tourDatesEvents;
 
@@ -284,7 +284,7 @@ public class Tourdates extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+//        getMenuInflater().inflate(R.menu.main, menu);
         getMenuInflater().inflate(R.menu.tour_date_menu,menu);
 
         return true;
@@ -314,10 +314,10 @@ public class Tourdates extends Activity {
 //                Intent music = new Intent(this, Music.class);
 //                startActivity(music);
 //                break;
-//            case R.id.action_gallery:
-//                Intent gallery = new Intent(this, Gallery.class);
-//                startActivity(gallery);
-//                break;
+            case R.id.action_gallery:
+                Intent gallery = new Intent(this, Gallery.class);
+                startActivity(gallery);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

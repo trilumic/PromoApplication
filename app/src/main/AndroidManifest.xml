@@ -7,12 +7,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name="ch.djsimeon.android.promoapplication.app.MainActivity"
-            android:label="imeon"
+            android:label="@string/app_name"
             android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +22,8 @@
         <activity
             android:name="ch.djsimeon.android.promoapplication.app.Contact"
             android:label="@string/title_activity_contact"
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:parentActivityName="ch.djsimeon.android.promoapplication.app.MainActivity">
             android:parentActivityName="ch.djsimeon.android.promoapplication.app.MainActivity"
             android:uiOptions="splitActionBarWhenNarrow" >
         </activity>

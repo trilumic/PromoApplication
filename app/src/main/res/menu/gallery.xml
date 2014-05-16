@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ch.djsimeon.android.promoapplication.app.MainActivity" >
+
+    <item android:id="@+id/action_contact"
+        android:title="@string/action_contact"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom" />
+
+    <item android:id="@+id/action_tourdates"
+        android:title="@string/action_tourdates"
+        android:orderInCategory="110"
+        android:showAsAction="ifRoom" />
+
+    <item android:id="@+id/action_music"
+        android:title="@string/action_music"
+        android:orderInCategory="130"
+        android:showAsAction="ifRoom" />
+
+</menu>
