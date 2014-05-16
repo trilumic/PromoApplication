@@ -73,7 +73,7 @@ public class Contact extends Activity {
 //                startActivity(music);
 //                break;
 //            case R.id.action_gallery:
-//                Intent gallery = new Intent(this, Gallery.class);
+//                Intent gallery = new Intent(this, MyGallery.class);
 //                startActivity(gallery);
 //                break;
 

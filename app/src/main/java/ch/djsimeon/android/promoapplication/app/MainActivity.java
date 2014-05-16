@@ -12,6 +12,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
 
@@ -44,7 +45,7 @@ public class MainActivity extends Activity {
 //                startActivity(music);
 //                break;
 //            case R.id.action_gallery:
-//                Intent gallery = new Intent(this, Gallery.class);
+//                Intent gallery = new Intent(this, MyGallery.class);
 //                startActivity(gallery);
 //                break;
 
