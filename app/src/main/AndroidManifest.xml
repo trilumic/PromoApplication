@@ -8,7 +8,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
-        android:label="Simeon"
+        android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name="ch.djsimeon.android.promoapplication.app.Gallery"
@@ -19,7 +19,8 @@
             android:name="ch.djsimeon.android.promoapplication.app.MainActivity"
             android:label="imeon"
             android:uiOptions="splitActionBarWhenNarrow" >
-            <intent-filter>
+            <intent-filter android:label="Simeon">
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
