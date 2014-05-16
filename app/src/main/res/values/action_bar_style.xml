@@ -5,12 +5,22 @@
         parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
         <item name="android:background">#222222</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
     <!-- ActionBar styles -->
     <style name="MyActionBar"
         parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-
         <item name="android:background">#222222</item>
     </style>
+
+    <style name="ContactTheme"
+        parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:itemBackground">#222222</item>
+        <!--<item name="android:actionBarItemBackground">@style/MyActionBar</item>-->
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+
 </resources>
