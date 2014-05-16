@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,6 +45,13 @@ public class Gallery extends Activity {
                 myView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 myView.setLayoutParams(new ImageSwitcher.LayoutParams(ImageSwitcher.LayoutParams.
                         MATCH_PARENT,ImageSwitcher.LayoutParams.MATCH_PARENT));
+
+                myView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //Image Viewver öffnen
+                    }
+                });
                 return myView;
             }
         });
