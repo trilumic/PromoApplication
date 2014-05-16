@@ -31,7 +31,7 @@ import ch.djsimeon.android.promoapplication.app.xmlStuff.TourDatesEvent;
 import ch.djsimeon.android.promoapplication.app.xmlStuff.TourDatesParser;
 
 public class Tourdates extends Activity {
-    public static String XMLURL = "http://10.0.bild2.bild2/tourdates.xml";
+    public static String XMLURL = "https://raw.githubusercontent.com/trilumic/PromoApplication/master/app/src/main/res/other/tourdates.xml";
 
 //    ArrayList<TourDatesEvent> tourDatesEvents;
 
