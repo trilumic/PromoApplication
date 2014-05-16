@@ -64,7 +64,7 @@ public class Gallery extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+//        getMenuInflater().inflate(R.menu.main, menu);
         getMenuInflater().inflate(R.menu.gallery, menu);
 
         return true;
@@ -91,10 +91,10 @@ public class Gallery extends Activity {
 //                Intent music = new Intent(this, Music.class);
 //                startActivity(music);
 //                break;
-            case R.id.action_gallery:
-                Intent gallery = new Intent(this, Gallery.class);
-                startActivity(gallery);
-                break;
+//            case R.id.action_gallery:
+//                Intent gallery = new Intent(this, Gallery.class);
+//                startActivity(gallery);
+//                break;
 
         }
         return super.onOptionsItemSelected(item);
