@@ -20,26 +20,28 @@
         android:layout_alignParentStart="true"
         android:layout_above="@+id/button" />
 
-    <Button
+    <ImageButton
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&lt;-"
+        android:src="@drawable/arrow_left"
         android:id="@+id/previous"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="previous"/>
+        android:onClick="previous"
+        android:alpha=".5" />
 
-    <Button
+    <ImageButton
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="-&gt;"
+        android:src="@drawable/arrow_right"
         android:id="@+id/next"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="next"/>
+        android:onClick="next"
+        android:alpha=".5" />
 
 </RelativeLayout>

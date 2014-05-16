@@ -10,15 +10,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher;
 
 public class Gallery extends Activity {
 
-    private Button next;
+
     private ImageSwitcher imageSwitcher;
     private int[] images = {R.drawable.bild1, R.drawable.bild2};
     private int index = 0;
@@ -30,7 +30,6 @@ public class Gallery extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
-        next = (Button) findViewById(R.id.next);
         imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher);
 
 

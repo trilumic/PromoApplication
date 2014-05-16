@@ -72,10 +72,10 @@ public class Contact extends Activity {
 //                Intent music = new Intent(this, Music.class);
 //                startActivity(music);
 //                break;
-//            case R.id.action_gallery:
-//                Intent gallery = new Intent(this, Gallery.class);
-//                startActivity(gallery);
-//                break;
+            case R.id.action_gallery:
+                Intent gallery = new Intent(this, Gallery.class);
+                startActivity(gallery);
+                break;
 
         }
         return super.onOptionsItemSelected(item);
