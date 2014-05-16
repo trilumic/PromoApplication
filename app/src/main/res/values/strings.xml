@@ -16,5 +16,7 @@
     <string name="loading">Loading...</string>
     <string name="refresh_failed">Refresh failed</string>
     <string name="title_activity_gallery">Gallery</string>
+    <string name="title_activity_music_player">MusicPlayer</string>
+    <string name="inital_Time">00 : 00</string>
 
 </resources>

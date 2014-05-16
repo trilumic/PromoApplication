@@ -13,23 +13,23 @@
         <activity
             android:name="ch.djsimeon.android.promoapplication.app.Gallery"
             android:label="@string/title_activity_gallery"
-            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName="ch.djsimeon.android.promoapplication.app.MainActivity"
-            />
+            android:uiOptions="splitActionBarWhenNarrow" />
         <activity
             android:name="ch.djsimeon.android.promoapplication.app.MainActivity"
             android:label="imeon"
             android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="ch.djsimeon.android.promoapplication.app.Contact"
             android:label="@string/title_activity_contact"
-            android:uiOptions="splitActionBarWhenNarrow"
-            android:parentActivityName="ch.djsimeon.android.promoapplication.app.MainActivity">
+            android:parentActivityName="ch.djsimeon.android.promoapplication.app.MainActivity"
+            android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity
             android:name="ch.djsimeon.android.promoapplication.app.Tourdates"
@@ -45,6 +45,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.djsimeon.android.promoapplication.app.Tourdates" />
+        </activity>
+        <activity
+            android:name="ch.djsimeon.android.promoapplication.app.MusicPlayer"
+            android:label="@string/title_activity_music_player"
+            android:parentActivityName="ch.djsimeon.android.promoapplication.app.MainActivity"
+            android:uiOptions="splitActionBarWhenNarrow">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
         </activity>
     </application>
 
