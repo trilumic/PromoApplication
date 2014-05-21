@@ -29,6 +29,7 @@
         <activity
             android:name="ch.djsimeon.android.promoapplication.app.Contact"
             android:label="@string/title_activity_contact"
+            android:theme="@style/ContactTheme"
             android:parentActivityName="ch.djsimeon.android.promoapplication.app.MainActivity"
             android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
