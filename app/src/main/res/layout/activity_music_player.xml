@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:onClick="rewind"
-            android:src="@android:drawable/ic_media_rew" />
+            android:src="@android:drawable/ic_media_previous" />
 
         <ImageButton
             android:id="@+id/play"
@@ -90,7 +90,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:onClick="pause"
+            android:onClick="stop"
             android:src="@drawable/ic_action_stop" />
 
         <ImageButton
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:onClick="forward"
             android:layout_weight="2"
-            android:src="@android:drawable/ic_media_ff" />
+            android:src="@android:drawable/ic_media_next" />
     </LinearLayout>
 
 

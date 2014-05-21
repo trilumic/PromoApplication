@@ -29,14 +29,16 @@ public class MusicPlayer extends Activity {
     private SeekBar seekbar;
     private ImageButton playButton,pauseButton;
     public static int oneTimeOnly = 0;
-
-
+    public int[] musicPieces = {R.raw.skankout, R.raw.feelings};
+    public int musicPieceIndex = 0;
     //    public String customFormat(String pattern, double value){
 //        DecimalFormat myFormat = new DecimalFormat(pattern);
 //        String output = myFormat.format(value);
 //        return output;
 //
 //    }
+
+    boolean seeking = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,24 @@ public class MusicPlayer extends Activity {
         startTimeField =(TextView)findViewById(R.id.timeElapsed);
         endTimeField =(TextView)findViewById(R.id.initial_time);
         seekbar = (SeekBar)findViewById(R.id.seek_slider);
+
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                seeking = true;
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mediaPlayer.seekTo(seekBar.getProgress());
+                seeking = false;
+            }
+        });
         playButton = (ImageButton)findViewById(R.id.play);
 //        pauseButton = (ImageButton)findViewById(R.id.imageButton2);
         mediaPlayer = MediaPlayer.create(this, R.raw.skankout);
@@ -63,13 +83,32 @@ public class MusicPlayer extends Activity {
 
         mediaPlayer.pause();
         mediaPlayer.seekTo(0);
+
+        playButton.setImageResource(android.R.drawable.ic_media_play);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                play();
+            }
+        });
     }
 
     private void setTime() {
 
     }
+
+    private void startMusicPiece() {
+        finalTime = mediaPlayer.getDuration();
+        seekbar.setMax((int) finalTime);
+        endTimeField.setText(String.format("%02d : %02d",
+                TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
+                TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                toMinutes((long) finalTime)))
+        );
+    }
     public void play(){
-        Toast.makeText(getApplicationContext(), "Playing",
+        Toast.makeText(getApplicationContext(), "playing",
                 Toast.LENGTH_SHORT).show();
         mediaPlayer.start();
         finalTime = mediaPlayer.getDuration();
@@ -123,10 +162,13 @@ public class MusicPlayer extends Activity {
                             TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
                                     toMinutes((long) startTime)))
             );
-            seekbar.setProgress((int)startTime);
+            if(!seeking) {
+                seekbar.setProgress((int)startTime);
+            }
             myHandler.postDelayed(this, 100);
         }
     };
+
     public void pause(){
         Toast.makeText(getApplicationContext(), "Pausing",
                 Toast.LENGTH_SHORT).show();
@@ -145,30 +187,42 @@ public class MusicPlayer extends Activity {
     }
 
     public void forward(View view){
-        int temp = (int)startTime;
-        if((temp+forwardTime)<=finalTime){
-            startTime = startTime + forwardTime;
-            mediaPlayer.seekTo((int) startTime);
+//        int temp = (int)startTime;
+//        if((temp+forwardTime)<=finalTime){
+//            startTime = startTime + forwardTime;
+//            mediaPlayer.seekTo((int) startTime);
+//        }
+//        else{
+//            Toast.makeText(getApplicationContext(),
+//                    "Cannot jump forward 5 seconds",
+//                    Toast.LENGTH_SHORT).show();
+//        }
+        musicPieceIndex += 1;
+        if (musicPieceIndex == musicPieces.length) {
+            musicPieceIndex = 0;
         }
-        else{
-            Toast.makeText(getApplicationContext(),
-                    "Cannot jump forward 5 seconds",
-                    Toast.LENGTH_SHORT).show();
-        }
-
+        mediaPlayer.stop();
+        mediaPlayer = MediaPlayer.create(this, musicPieces[musicPieceIndex]);
+        mediaPlayer.start();
     }
     public void rewind(View view){
-        int temp = (int)startTime;
-        if((temp-backwardTime)>0){
-            startTime = startTime - backwardTime;
-            mediaPlayer.seekTo((int) startTime);
+//        int temp = (int)startTime;
+//        if((temp-backwardTime)>0){
+//            startTime = startTime - backwardTime;
+//            mediaPlayer.seekTo((int) startTime);
+//        }
+//        else{
+//            Toast.makeText(getApplicationContext(),
+//                    "Cannot jump backward 5 seconds",
+//                    Toast.LENGTH_SHORT).show();
+//        }
+        musicPieceIndex -= 1;
+        if (musicPieceIndex == -1) {
+            musicPieceIndex =  musicPieces.length - 1;
         }
-        else{
-            Toast.makeText(getApplicationContext(),
-                    "Cannot jump backward 5 seconds",
-                    Toast.LENGTH_SHORT).show();
-        }
-
+        mediaPlayer.stop();
+        mediaPlayer = MediaPlayer.create(this, musicPieces[musicPieceIndex]);
+        mediaPlayer.start();
     }
 
     @Override
