@@ -127,10 +127,7 @@ public class MusicPlayer extends Activity {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (musicPieceStarted == -1) {
 
-
-                }
                 play();
             }
         });
@@ -172,7 +169,7 @@ public class MusicPlayer extends Activity {
         ImageView cover = (ImageView) findViewById(R.id.cover_image);
         int size = Math.min(cover.getWidth(), cover.getHeight());
         cover.setImageBitmap(
-                decodeSampledBitmapFromResource(getResources(), musicPieceCovers[index], size, size));
+                decodeSampledBitmapFromResource(getResources(), musicPieceCovers[index], 400, 400));
 //        cover.setImageResource(musicPieceCovers[index]);
         endTimeField.setText(String.format("%02d : %02d",
                 TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
@@ -353,4 +350,6 @@ public class MusicPlayer extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
