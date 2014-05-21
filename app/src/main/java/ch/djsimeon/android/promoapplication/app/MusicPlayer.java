@@ -4,11 +4,13 @@ package ch.djsimeon.android.promoapplication.app;
 import java.text.DecimalFormat;
 import java.util.concurrent.TimeUnit;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -39,18 +41,34 @@ public class MusicPlayer extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
-//        startTimeField =(TextView)findViewById(R.id.textView1);
-//        endTimeField =(TextView)findViewById(R.id.textView2);
-//        seekbar = (SeekBar)findViewById(R.id.seekBar1);
-//        playButton = (ImageButton)findViewById(R.id.imageButton1);
+        startTimeField =(TextView)findViewById(R.id.timeElapsed);
+        endTimeField =(TextView)findViewById(R.id.initial_time);
+        seekbar = (SeekBar)findViewById(R.id.seek_slider);
+        playButton = (ImageButton)findViewById(R.id.play);
 //        pauseButton = (ImageButton)findViewById(R.id.imageButton2);
-//        mediaPlayer = MediaPlayer.create(this, R.raw.skankout);
-//        seekbar.setClickable(false);
+        mediaPlayer = MediaPlayer.create(this, R.raw.skankout);
+        seekbar.setClickable(false);
 //        pauseButton.setEnabled(false);
-
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                play();
+            }
+        });
     }
 
-    public void play(View view){
+    public void stop(View view) {
+        Toast.makeText(getApplicationContext(), "Stopped",
+                Toast.LENGTH_SHORT).show();
+
+        mediaPlayer.pause();
+        mediaPlayer.seekTo(0);
+    }
+
+    private void setTime() {
+
+    }
+    public void play(){
         Toast.makeText(getApplicationContext(), "Playing",
                 Toast.LENGTH_SHORT).show();
         mediaPlayer.start();
@@ -84,8 +102,16 @@ public class MusicPlayer extends Activity {
 
         seekbar.setProgress((int)startTime);
         myHandler.postDelayed(UpdateSongTime,100);
-        pauseButton.setEnabled(true);
-        playButton.setEnabled(false);
+
+        playButton.setImageResource(android.R.drawable.ic_media_pause);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pause();
+            }
+        });
+//        pauseButton.setEnabled(true);
+//        playButton.setEnabled(false);
     }
 
     private Runnable UpdateSongTime = new Runnable() {
@@ -101,14 +127,23 @@ public class MusicPlayer extends Activity {
             myHandler.postDelayed(this, 100);
         }
     };
-    public void pause(View view){
+    public void pause(){
         Toast.makeText(getApplicationContext(), "Pausing",
                 Toast.LENGTH_SHORT).show();
 
         mediaPlayer.pause();
-        pauseButton.setEnabled(false);
-        playButton.setEnabled(true);
+//        pauseButton.setEnabled(false);
+//        playButton.setEnabled(true);
+
+        playButton.setImageResource(android.R.drawable.ic_media_play);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                play();
+            }
+        });
     }
+
     public void forward(View view){
         int temp = (int)startTime;
         if((temp+forwardTime)<=finalTime){
@@ -139,8 +174,33 @@ public class MusicPlayer extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.music_player, menu);
+
+
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.action_contact:
+                Intent contact = new Intent(this,Contact.class);
+                startActivity(contact);
+                break;
+            case  R.id.action_tourdates:
+                Intent tour = new Intent(this,Tourdates.class);
+                startActivity(tour);
+                break;
+            case R.id.action_gallery:
+                Intent gallery = new Intent(this, Gallery.class);
+                startActivity(gallery);
+                break;
+
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

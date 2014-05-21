@@ -70,10 +70,10 @@ public class Contact extends Activity {
                 Intent tour = new Intent(this,Tourdates.class);
                 startActivity(tour);
                 break;
-//            case R.id.action_music:
-//                Intent music = new Intent(this, Music.class);
-//                startActivity(music);
-//                break;
+            case R.id.action_music:
+                Intent music = new Intent(this, MusicPlayer.class);
+                startActivity(music);
+                break;
             case R.id.action_gallery:
                 Intent gallery = new Intent(this, Gallery.class);
                 startActivity(gallery);
