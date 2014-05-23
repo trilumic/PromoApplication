@@ -10,7 +10,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:src="@drawable/background_land"
-        android:scaleType="fitStart"/>
+        android:scaleType="fitStart"
+        android:background="#FFFFFF"/>
 
 
 </RelativeLayout>
